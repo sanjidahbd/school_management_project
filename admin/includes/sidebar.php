@@ -1,3 +1,5 @@
+  
+<div id="main_content">
   <div id="header_top" class="header_top">
         <div class="container">
             <div class="hleft">
@@ -30,18 +32,13 @@
                     <ul class="metismenu">
                         <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                         <li><a href="professors.html"><i class="fa fa-black-tie"></i><span>Professors</span></a></li>
-                        <li><a href="staff.html"><i class="fa fa-user-circle-o"></i><span>Staff</span></a></li>
+                       
                         <li><a href="students.html"><i class="fa fa-users"></i><span>Students</span></a></li>
                         <li><a href="departments.html"><i class="fa fa-users"></i><span>Departments</span></a></li>
                         <li><a href="courses.html"><i class="fa fa-graduation-cap"></i><span>Courses</span></a></li>                        
                         <li><a href="library.html"><i class="fa fa-book"></i><span>Library</span></a></li>
-                        <li><a href="holiday.html"><i class="fa fa-bullhorn"></i><span>Holiday</span></a></li>
-                        <li class="g_heading">Extra</li>
-                        <li><a href="events.html"><i class="fa fa-calendar"></i><span>Calender</span></a></li>
-                        <li><a href="app-chat.html"><i class="fa fa-comments-o"></i><span>Chat App</span></a></li>
-                        <li><a href="app-contact.html"><i class="fa fa-address-book"></i><span>Contact</span></a></li>
-                        <li><a href="app-filemanager.html"><i class="fa fa-folder"></i><span>FileManager</span></a></li>
-                        <li><a href="our-centres.html"><i class="fa fa-map"></i><span>OurCentres</span></a></li>
+                        <li><a href="holiday.html"><i class="fa fa-bullhorn"></i><span>Notices</span></a></li>
+                  
                         <li><a href="gallery.html"><i class="fa fa-camera-retro"></i><span>Gallery</span></a></li>
                     </ul>
                 </nav>
