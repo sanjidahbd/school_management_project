@@ -1,0 +1,159 @@
+// === CORE TABLES ===
+
+// 1. Users (Admin, Teacher, Student, Parent Login)
+Table "Users" {
+  user_id integer [pk]
+  username varchar(50) [unique] // Usually the login ID, often the email
+  password_hash char(32)
+  role varchar(15) // 'Admin', 'Teacher', 'Student', 'Parent'
+}
+
+// 2. Students
+Table "Students" {
+  student_id integer [pk]
+  first_name varchar(50)
+  last_name varchar(50)
+  email varchar(100) [unique] // Dashboard Email Field
+  user_id integer [ref: > Users.user_id]
+}
+
+// 3. Teachers
+Table "Teachers" {
+  teacher_id integer [pk]
+  first_name varchar(50)
+  last_name varchar(50)
+  email varchar(100) [unique] // Dashboard Email Field
+  user_id integer [ref: > Users.user_id]
+}
+
+// 4. Parents
+Table "Parents" {
+  parent_id integer [pk]
+  first_name varchar(50)
+  last_name varchar(50)
+  email varchar(100) [unique] // Dashboard Email Field
+  user_id integer [ref: > Users.user_id]
+  student_id integer [ref: > Students.student_id] // Link to Child
+}
+
+// 5. Classes (Grade/Section)
+Table "Classes" {
+  class_id integer [pk]
+  class_name varchar(20) // e.g., "Class 10 A"
+}
+
+// 6. Enrollment (Who is in which class)
+Table "Enrollment" {
+  enrollment_id integer [pk]
+  student_id integer [ref: > Students.student_id]
+  class_id integer [ref: > Classes.class_id]
+}
+
+// === EXAM & MARKS TABLES ===
+
+// 7. Exams (Defines which exam is held in which month)
+Table "Exams" {
+  exam_id integer [pk]
+  exam_name varchar(50) // e.g., "Mid-Term", "Annual Exam"
+  academic_year varchar(10) // e.g., "2024-2025"
+  exam_month varchar(20) // e.g., "October", "December"
+  start_date date
+}
+
+// 8. Marks (Links directly to the specific Exam instance)
+Table "Marks" {
+  mark_id integer [pk]
+  student_id integer [ref: > Students.student_id]
+  class_id integer [ref: > Classes.class_id]
+  exam_id integer [ref: > Exams.exam_id] // Foreign Key to link to the exam
+  subject_name varchar(50)
+  marks_obtained integer
+}
+
+// === OTHER SIMPLIFIED FEATURE TABLES ===
+
+// 9. Attendance
+Table "Attendance" {
+  attendance_id integer [pk]
+  student_id integer [ref: > Students.student_id]
+  class_id integer [ref: > Classes.class_id]
+  attendance_date date
+  status varchar(10) // 'P' or 'A'
+}
+
+// 10. Routine (Class Routine)
+Table "Routine" {
+  routine_id integer [pk]
+  class_id integer [ref: > Classes.class_id]
+  day_of_week varchar(10)
+  start_time time
+  subject_name varchar(50)
+  teacher_id integer [ref: > Teachers.teacher_id]
+}
+
+// 11. Notices (For general announcements/circulars)
+Table "Notices" {
+  notice_id integer [pk]
+  title varchar(100)
+  content text
+  published_date date
+  published_by_user_id integer [ref: > Users.user_id]
+}
+
+// 12. Events (Managing school events and activities)
+Table "Events" {
+  event_id integer [pk]
+  title varchar(100)
+  description text
+  event_date date
+  location varchar(100)
+  published_by_user_id integer [ref: > Users.user_id]
+}
+
+// 13. Library_Books (Library Table - Manages book inventory)
+Table "Library_Books" {
+  book_id integer [pk]
+  title varchar(150)
+  author varchar(100)
+  isbn varchar(13) [unique]
+  total_copies integer
+}
+
+// === INVOICES & PAYMENTS TABLES ===
+
+// 14. Invoices (Master Table - Main Invoice Record)
+Table "Invoices" {
+  invoice_id integer [pk]
+  student_id integer [ref: > Students.student_id]
+  issue_date date
+  due_date date
+  total_amount decimal(10, 2)
+  status varchar(20)
+}
+
+// 15. Invoice_Items (Line Items - What the invoice is for)
+Table "Invoice_Items" {
+  item_id integer [pk]
+  invoice_id integer [ref: > Invoices.invoice_id]
+  item_description varchar(100)
+  amount decimal(10, 2)
+}
+
+// 16. Payments (Tracking received payments)
+Table "Payments" {
+  payment_id integer [pk]
+  invoice_id integer [ref: > Invoices.invoice_id]
+  payment_date datetime
+  paid_amount decimal(10, 2)
+  payment_method varchar(50)
+  transaction_id varchar(100)
+}
+
+// 17. Messages
+Table "Messages" {
+  message_id integer [pk]
+  sender_user_id integer [ref: > Users.user_id]
+  receiver_user_id integer [ref: > Users.user_id]
+  body text
+  sent_date_time datetime
+}
