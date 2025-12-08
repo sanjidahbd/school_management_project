@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION['admin_login'])){
+if(!isset(($_SESSION['teacher_login']))){
     header("Location:index.php");
 }
- ?>
+?>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>

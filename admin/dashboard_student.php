@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include("includes/db_config.php");
+if(!isset($_SESSION['student_login'])){
+    header("Location:index.php");
+}
+ ?>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>

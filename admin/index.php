@@ -1,4 +1,8 @@
-<?php include("includes/db_config.php")?>
+<?php 
+include("includes/db_config.php");
+session_start();
+?>
+
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -33,12 +37,15 @@
                     $rawData = $db->query($sql);
                      if($rawData->num_rows){
                         if($role==1){
+                            $_SESSION['admin_login'] = $email;
                             header("Location:dashboard_admin.php");
                         }
                         if($role==2){
+                            $_SESSION['student_login'] = $email;
                             header("Location:dashboard_student.php");
                         }
                          if($role==3){
+                            $_SESSION['teacher_login'] = $email;
                             header("Location:dashboard_teacher.php");
                         }
                      } else {
