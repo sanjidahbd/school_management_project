@@ -1,4 +1,8 @@
-<?php include("includes/db_config.php")?>
+<?php 
+include("includes/db_config.php");
+session_start();
+?>
+
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -24,6 +28,32 @@
     <div class="auth_left">
         <div class="card">
             <div class="card-body">
+                <?php 
+                if(isset($_POST['login'])){
+                    extract($_POST);
+                    $password = md5($password);
+
+                    $sql = "SELECT * FROM users WHERE username = '$email' AND password_hash = '$password' AND role = '$role'";
+                    $rawData = $db->query($sql);
+                     if($rawData->num_rows){
+                        if($role==1){
+                            $_SESSION['admin_login'] = $email;
+                            header("Location:dashboard_admin.php");
+                        }
+                        if($role==2){
+                            $_SESSION['student_login'] = $email;
+                            header("Location:dashboard_student.php");
+                        }
+                         if($role==3){
+                            $_SESSION['teacher_login'] = $email;
+                            header("Location:dashboard_teacher.php");
+                        }
+                     } else {
+                        echo '<div class="alert alert-danger">Check Email or Password</div>';
+                     }
+                    
+                }  
+                ?>
                 <div class="text-center">
                     <a class="header-brand" href="index.html"><i class="fa fa-graduation-cap brand-logo"></i></a>
                     <form action="" method="post">
@@ -45,7 +75,7 @@
             <option value="1">Admin</option>
             <option value="2">Student</option>
             <option value="3">Teacher</option>
-            <option value="3">Parent</option>
+            
           </select>
                 </div>
               

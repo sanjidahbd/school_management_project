@@ -33,7 +33,17 @@
                         <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                         <li><a href="professors.html"><i class="fa fa-black-tie"></i><span>Professors</span></a></li>
                        
-                        <li><a href="students.html"><i class="fa fa-users"></i><span>Students</span></a></li>
+                        <li><a href=""><i class="fa fa-users"></i><span>Students</span>
+                        
+                    
+                    
+                    
+                    </a>
+                    
+                    
+                    
+                    
+                    </li>
                         <li><a href="departments.html"><i class="fa fa-users"></i><span>Departments</span></a></li>
                         <li><a href="courses.html"><i class="fa fa-graduation-cap"></i><span>Courses</span></a></li>                        
                         <li><a href="library.html"><i class="fa fa-book"></i><span>Library</span></a></li>
