@@ -22,11 +22,8 @@
 
 <div class="auth option2">
     <div class="auth_left">
-       
         <div class="card">
             <div class="card-body">
-
-                hello
                 <div class="text-center">
                     <a class="header-brand" href="index.html"><i class="fa fa-graduation-cap brand-logo"></i></a>
                     <form action="" method="post">
@@ -48,7 +45,7 @@
             <option value="1">Admin</option>
             <option value="2">Student</option>
             <option value="3">Teacher</option>
-            <option value="4">Parent</option>
+            <option value="3">Parent</option>
           </select>
                 </div>
               
